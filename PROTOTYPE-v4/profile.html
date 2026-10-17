@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile - Math Mate</title>
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="page">
+
+  <!-- Shared Sidebar Container -->
+  <div id="sidebar-container"></div>
+
+  <!-- Main Content View -->
+  <main class="main-content">
+    <div class="profile-container">
+
+      <!-- Profile Header Card -->
+      <div class="profile-banner-card">
+        <div class="profile-avatar-wrapper">
+          <div class="profile-avatar" id="profileAvatarDisplay">
+            <span id="profileAvatarText">MM</span>
+          </div>
+          <button class="avatar-edit-badge" onclick="openAvatarModal()" title="Customize Avatar">
+            <i class="icon" data-lucide="camera"></i>
+          </button>
+        </div>
+
+        <div class="profile-header-info">
+          <div class="profile-name-row">
+            <h1 id="profileNameDisplay">Math Explorer</h1>
+            <button class="edit-icon-btn" onclick="openEditNameModal()" title="Edit Name (1x per 7 days)">
+              <i class="icon" data-lucide="pencil"></i>
+            </button>
+          </div>
+          <div class="profile-meta-row">
+            <span class="role-badge" id="profileRoleDisplay">Member</span>
+            <span class="rank-badge" id="profileRankDisplay">
+              <i class="icon" data-lucide="trophy"></i> Rank #4
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description / Bio Card -->
+      <div class="profile-section-card">
+        <div class="section-header">
+          <h3><i class="icon" data-lucide="user-text"></i> Description</h3>
+          <button class="edit-icon-btn" onclick="openEditBioModal()" title="Edit Description">
+            <i class="icon" data-lucide="edit-3"></i>
+          </button>
+        </div>
+        <p id="profileBioDisplay" class="bio-text">
+          Passionate about solving complex math puzzles and climbing the global leaderboard!
+        </p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon-wrapper xp-color">
+            <i class="icon" data-lucide="zap"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Experience Points</span>
+            <span class="stat-value" id="profileXpDisplay">1,250 XP</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper heart-color">
+            <i class="icon" data-lucide="heart"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Hearts</span>
+            <span class="stat-value" id="profileHeartsDisplay">3 / 3</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper gold-color">
+            <i class="icon" data-lucide="coins"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Gold Coins</span>
+            <span class="stat-value" id="profileGoldDisplay">150</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper rank-color">
+            <i class="icon" data-lucide="award"></i>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Global Leaderboard</span>
+            <span class="stat-value" id="profileGlobalRankDisplay">#4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two Column Layout: Courses In & Friends -->
+      <div class="profile-two-col">
+
+        <!-- Enrolled Courses Card -->
+        <div class="profile-section-card">
+          <div class="section-header">
+            <h3><i class="icon" data-lucide="book-open"></i> Courses Enrolled</h3>
+            <span class="badge-count" id="profileCoursesCount">3 Active</span>
+          </div>
+          <div class="courses-list" id="profileCoursesList">
+            <!-- Dynamic course items -->
+          </div>
+        </div>
+
+        <!-- Friends Card -->
+        <div class="profile-section-card">
+          <div class="section-header">
+            <h3><i class="icon" data-lucide="users"></i> Friends</h3>
+            <span class="badge-count" id="profileFriendsCount">4 Friends</span>
+          </div>
+          <div class="friends-list" id="profileFriendsList">
+            <!-- Dynamic friend items -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal Container -->
+  <div id="standardPopup" class="popup-overlay">
+    <div class="popup-card">
+      <span class="close-btn" onclick="closeStandardPopup()">✕</span>
+      <h2 id="standardPopupTitle">Title</h2>
+      <div id="standardPopupContent" class="popup-body">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<input type="checkbox" id="theme" class="theme-toggle" />
+
+<aside class="sidebar">
+  <!-- Profile Header (Clickable to open profile) -->
+  <div class="profile" onclick="switchSection('profile')" style="cursor: pointer; pointer-events: auto;">
+    <div class="avatar-placeholder" id="sidebarAvatar">MM</div>
+    <div class="details">
+      <p class="name" id="sidebarName">Math Explorer</p>
+      <p class="role" id="sidebarRole">Member</p>
+    </div>
+  </div>
+
+  <!-- Navigation List -->
+  <nav>
+    <input type="radio" id="nav-dashboard" name="nav" class="nav-radio" onclick="switchSection('dashboard')" />
+    <label class="item" for="nav-dashboard">
+      <i class="icon" data-lucide="layout-dashboard"></i>
+      <p>Dashboard</p>
+    </label>
+
+    <input type="radio" id="nav-courses" name="nav" class="nav-radio" onclick="switchSection('courses')" />
+    <label class="item" for="nav-courses">
+      <i class="icon" data-lucide="book-open"></i>
+      <p>Courses</p>
+    </label>
+
+    <input type="radio" id="nav-people" name="nav" class="nav-radio" onclick="switchSection('people')" />
+    <label class="item" for="nav-people">
+      <i class="icon" data-lucide="users"></i>
+      <p>People</p>
+    </label>
+
+    <input type="radio" id="nav-leaderboard" name="nav" class="nav-radio" onclick="switchSection('leaderboard')" />
+    <label class="item" for="nav-leaderboard">
+      <i class="icon" data-lucide="trophy"></i>
+      <p>Leaderboard</p>
+    </label>
+
+    <input type="radio" id="nav-shop" name="nav" class="nav-radio" onclick="switchSection('shop')" />
+    <label class="item" for="nav-shop">
+      <i class="icon" data-lucide="shopping-bag"></i>
+      <p>Shop</p>
+    </label>
+
+    <input type="radio" id="nav-generate" name="nav" class="nav-radio" onclick="switchSection('generate')" />
+    <label class="item" for="nav-generate">
+      <i class="icon" data-lucide="sparkles"></i>
+      <p>Generate</p>
+    </label>
+
+    <hr />
+
+    <input type="radio" id="nav-profile" name="nav" class="nav-radio" onclick="switchSection('profile')" />
+    <label class="item" for="nav-profile">
+      <i class="icon" data-lucide="user"></i>
+      <p>Profile</p>
+    </label>
+
+    <input type="radio" id="nav-notifications" name="nav" class="nav-radio" onclick="switchSection('notifications')" />
+    <label class="item" for="nav-notifications">
+      <i class="icon" data-lucide="bell"></i>
+      <p>Notifications</p>
+    </label>
+
+    <input type="radio" id="nav-role" name="nav" class="nav-radio" onclick="switchSection('role')" />
+    <label class="item" for="nav-role">
+      <i class="icon" data-lucide="key-round"></i>
+      <p>Role Access</p>
+    </label>
+
+    <input type="radio" id="nav-settings" name="nav" class="nav-radio" onclick="switchSection('settings')" />
+    <label class="item" for="nav-settings">
+      <i class="icon" data-lucide="settings"></i>
+      <p>Settings</p>
+    </label>
+  </nav>
+
+  <!-- Bottom Actions (Functional Light/Dark Mode Toggle) -->
+  <div class="actions">
+    <label class="action" for="theme" title="Toggle Light/Dark Theme">
+      <i class="icon moon" data-lucide="moon"></i>
+      <i class="icon sun" data-lucide="sun"></i>
+    </label>
+  </div>
+</aside>
