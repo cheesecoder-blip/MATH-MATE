@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications - Math Mate</title>
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="page">
+
+  <!-- Shared Sidebar Container -->
+  <div id="sidebar-container"></div>
+
+  <!-- Main Content View -->
+  <main class="main-content">
+    <div id="contentArea">
+
+      <!-- Header Section -->
+      <header class="page-header flex-between">
+        <div class="header-title">
+          <h1>Notifications</h1>
+          <p>Stay updated on incoming friend requests, group chat invitations, and activity alerts.</p>
+        </div>
+        <button id="markAllReadBtn" class="btn btn-secondary" onclick="markAllNotificationsAsRead()">
+          <i data-lucide="check-check" class="btn-icon"></i> Mark all as read
+        </button>
+      </header>
+
+      <!-- Notifications Feed Container -->
+      <section class="content-section">
+        <div id="notificationsFeed" class="notifications-list">
+          <div class="empty-state">
+            <i data-lucide="bell-off" class="empty-icon"></i>
+            <p>You have no notifications right now. Check back later!</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Reusable Popup Container -->
+  <div id="standardPopup" class="popup-overlay">
+    <div class="popup-card">
+      <span class="close-btn" onclick="closeStandardPopup()">✕</span>
+      <h2 id="standardPopupTitle">Title</h2>
+      <div id="standardPopupContent" class="popup-body"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>

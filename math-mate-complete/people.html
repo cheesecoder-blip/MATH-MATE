@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>People & Community - Math Mate</title>
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="page">
+
+  <!-- Shared Sidebar Container -->
+  <div id="sidebar-container"></div>
+
+  <!-- Main Content View -->
+  <main class="main-content">
+    <div id="contentArea">
+      
+      <!-- Top Search & Community Header -->
+      <header class="page-header">
+        <div class="header-title">
+          <h1>People & Community</h1>
+          <p>Find friends, collaborate on math problems, and chat in real-time.</p>
+        </div>
+        
+        <!-- User Search Input Bar -->
+        <div class="search-box-container">
+          <i data-lucide="search" class="search-icon"></i>
+          <input 
+            type="text" 
+            id="peopleSearchInput" 
+            class="search-input" 
+            placeholder="Search people by display name..." 
+            autocomplete="off"
+            oninput="handlePeopleSearch(this.value)"
+          />
+          <button id="clearSearchBtn" class="clear-search-btn" title="Clear search" onclick="clearPeopleSearch()" style="display:none;">✕</button>
+        </div>
+      </header>
+
+      <!-- Search Results Area -->
+      <section id="searchResultsSection" class="content-section" style="display: none; margin-bottom: 24px;">
+        <div class="section-header">
+          <h3>Search Results</h3>
+          <span id="searchResultCount" class="badge-count">0 found</span>
+        </div>
+        <div id="searchResultsList" class="cards-grid">
+          <!-- Dynamic Search Result Cards injected by JS -->
+        </div>
+      </section>
+
+      <!-- Navigation Tabs -->
+      <div class="tab-navigation">
+        <button id="tabFriendsBtn" class="tab-btn active" onclick="switchPeopleTab('friends')">
+          <i data-lucide="users" class="tab-icon"></i> Direct Friends
+        </button>
+        <button id="tabGroupsBtn" class="tab-btn" onclick="switchPeopleTab('groups')">
+          <i data-lucide="messages-square" class="tab-icon"></i> Group Chats
+        </button>
+      </div>
+
+      <!-- Friends View -->
+      <section id="friendsSection" class="content-section">
+        <div class="section-header">
+          <h3>Your Friends</h3>
+          <span id="friendsCount" class="badge-count">0 Friends</span>
+        </div>
+        <div id="friendsList" class="cards-grid">
+          <div class="empty-state">
+            <i data-lucide="user-plus" class="empty-icon"></i>
+            <p>No friends added yet. Type a display name in the search bar above to connect with other learners!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Group Chats View -->
+      <section id="groupsSection" class="content-section" style="display: none;">
+        <div class="section-header">
+          <h3>Group Chats</h3>
+          <button id="createGcBtn" class="btn btn-primary" onclick="openCreateGroupModal()">
+            <i data-lucide="plus" class="btn-icon"></i> Create Group Chat
+          </button>
+        </div>
+        <div id="groupChatsList" class="cards-grid">
+          <div class="empty-state">
+            <i data-lucide="users-round" class="empty-icon"></i>
+            <p>You haven't joined any group chats yet. Click "Create Group Chat" to start one with your friends!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Active Messenger Drawer / Modal Overlay -->
+      <div id="activeChatOverlay" class="chat-overlay" style="display: none;">
+        <div class="chat-window-card">
+          
+          <!-- Chat Header -->
+          <div class="chat-header">
+            <div class="chat-user-info">
+              <div id="chatAvatar" class="avatar-placeholder">?</div>
+              <div>
+                <h3 id="chatTitle">Chat Room</h3>
+                <span id="chatSubtitle" class="chat-subtitle">Direct Message</span>
+              </div>
+            </div>
+            
+            <div class="chat-header-actions">
+              <button id="editGcNameBtn" class="icon-btn" title="Edit Group Name" style="display:none;" onclick="openEditGroupNameModal()">
+                <i data-lucide="pencil"></i>
+              </button>
+              <button id="addGcMembersBtn" class="icon-btn" title="Add Members" style="display:none;" onclick="openAddMembersModal()">
+                <i data-lucide="user-plus"></i>
+              </button>
+              <button id="leaveGcBtn" class="icon-btn danger" title="Leave Group Chat" style="display:none;" onclick="leaveGroupChat()">
+                <i data-lucide="log-out"></i>
+              </button>
+              <button id="closeChatBtn" class="icon-btn" title="Close Chat" onclick="closeChatOverlay()">
+                <i data-lucide="x"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Message Feed -->
+          <div id="messageFeed" class="message-feed">
+            <div class="feed-empty-notice">
+              <p>No messages in this chat yet. Say hello!</p>
+            </div>
+          </div>
+
+          <!-- Input Bar -->
+          <form id="chatInputForm" class="chat-input-bar" onsubmit="sendChatMessage(event)">
+            <input 
+              type="text" 
+              id="chatMessageInput" 
+              class="chat-input" 
+              placeholder="Type a message..." 
+              autocomplete="off"
+            />
+            <button type="submit" class="btn btn-primary send-btn">
+              <i data-lucide="send"></i>
+            </button>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Reusable Popup Container -->
+  <div id="standardPopup" class="popup-overlay">
+    <div class="popup-card">
+      <span class="close-btn" onclick="closeStandardPopup()">✕</span>
+      <h2 id="standardPopupTitle">Title</h2>
+      <div id="standardPopupContent" class="popup-body"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>
