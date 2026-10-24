@@ -1,0 +1,114 @@
+<input type="checkbox" id="theme" class="theme-toggle" />
+
+<!-- Mobile Top Hamburger Bar -->
+<div class="mobile-top-bar">
+  <div style="display:flex; align-items:center; gap:12px;">
+    <button class="hamburger-btn" onclick="toggleHamburgerMenu()" title="Open Menu">
+      <i class="icon" data-lucide="menu"></i>
+    </button>
+    <span style="font-weight:800; font-size:1.15rem; color:var(--accent);">Math Mate</span>
+  </div>
+  <button class="action-btn" id="mobileThemeToggle" onclick="initTheme(true)" title="Toggle Theme">
+    <i class="icon" data-lucide="moon"></i>
+  </button>
+</div>
+
+<!-- Drawer Backdrop Overlay -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeHamburgerMenu()"></div>
+
+<!-- Mobile Navigation Drawer -->
+<div class="hamburger-drawer" id="hamburgerDrawer">
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border);">
+    <span style="font-weight:800; font-size:1.1rem; color:var(--accent);">Math Mate</span>
+    <button class="hamburger-btn" onclick="closeHamburgerMenu()">✕</button>
+  </div>
+
+  <div class="hamburger-item" onclick="switchSection('dashboard'); closeHamburgerMenu();">
+    <i class="icon" data-lucide="layout-dashboard"></i>
+    <span>Dashboard</span>
+  </div>
+  <div class="hamburger-item" onclick="switchSection('courses'); closeHamburgerMenu();">
+    <i class="icon" data-lucide="book-open"></i>
+    <span>Courses & Lessons</span>
+  </div>
+  <div class="hamburger-item" onclick="switchSection('people'); closeHamburgerMenu();">
+    <i class="icon" data-lucide="users"></i>
+    <span>People & Chat</span>
+  </div>
+  <div class="hamburger-item" onclick="switchSection('leaderboard'); closeHamburgerMenu();">
+    <i class="icon" data-lucide="trophy"></i>
+    <span>Leaderboard</span>
+  </div>
+  <div class="hamburger-item" onclick="switchSection('profile'); closeHamburgerMenu();">
+    <i class="icon" data-lucide="user"></i>
+    <span>Profile</span>
+  </div>
+
+  <hr style="margin: 12px 0; border: 0; border-top: 1px solid var(--border);" />
+
+  <div class="hamburger-item" onclick="logoutUser(); closeHamburgerMenu();" style="color: #ef4444; font-weight: 600;">
+    <i class="icon" data-lucide="log-out"></i>
+    <span>Log Out</span>
+  </div>
+</div>
+
+<!-- Desktop Responsive Sidebar -->
+<aside class="sidebar">
+  <!-- Profile Header -->
+  <div class="profile" onclick="switchSection('profile')" style="cursor: pointer;">
+    <div class="avatar-placeholder" id="sidebarAvatar" style="width:36px; height:36px; font-size:0.85rem;">MM</div>
+    <div class="details" style="overflow:hidden;">
+      <p class="name" id="sidebarName" style="font-weight:700; font-size:0.9rem; color:var(--text); text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">Math Explorer</p>
+      <p style="margin:2px 0 0 0; font-size:0.75rem; color:var(--soft);" id="sidebarXpDisplay">0 EXP</p>
+    </div>
+  </div>
+
+  <!-- Navigation List -->
+  <nav>
+    <input type="radio" id="nav-dashboard" name="nav" class="nav-radio" />
+    <label class="item" for="nav-dashboard" onclick="switchSection('dashboard')">
+      <i class="icon" data-lucide="layout-dashboard"></i>
+      <p>Dashboard</p>
+    </label>
+
+    <input type="radio" id="nav-courses" name="nav" class="nav-radio" />
+    <label class="item" for="nav-courses" onclick="switchSection('courses')">
+      <i class="icon" data-lucide="book-open"></i>
+      <p>Courses</p>
+    </label>
+
+    <input type="radio" id="nav-people" name="nav" class="nav-radio" />
+    <label class="item" for="nav-people" onclick="switchSection('people')">
+      <i class="icon" data-lucide="users"></i>
+      <p>People & Chat</p>
+    </label>
+
+    <input type="radio" id="nav-leaderboard" name="nav" class="nav-radio" />
+    <label class="item" for="nav-leaderboard" onclick="switchSection('leaderboard')">
+      <i class="icon" data-lucide="trophy"></i>
+      <p>Leaderboard</p>
+    </label>
+
+    <hr style="margin:8px 0;" />
+
+    <input type="radio" id="nav-profile" name="nav" class="nav-radio" />
+    <label class="item" for="nav-profile" onclick="switchSection('profile')">
+      <i class="icon" data-lucide="user"></i>
+      <p>Profile</p>
+    </label>
+
+    <input type="radio" id="nav-logout" name="nav" class="nav-radio" />
+    <label class="item" for="nav-logout" onclick="logoutUser()" style="color: #ef4444;">
+      <i class="icon" data-lucide="log-out"></i>
+      <p>Log Out</p>
+    </label>
+  </nav>
+
+  <!-- Desktop Theme Toggle Action -->
+  <div class="actions">
+    <button class="action-btn" id="desktopThemeToggle" onclick="initTheme(true)" style="width:100%; justify-content:center;">
+      <i class="icon" data-lucide="moon"></i>
+      <span>Toggle Theme</span>
+    </button>
+  </div>
+</aside>

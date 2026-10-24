@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notifications - Math Mate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=26" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="page">
+  <input type="checkbox" id="theme" class="theme-toggle" />
+
+  <!-- Shared Sidebar Container -->
+  <div id="sidebar-container"></div>
+
+  <main class="main-content">
+    <div class="welcome-card flex-between" style="margin-bottom: 20px;">
+      <div>
+        <h1 style="margin:0; font-size:1.5rem;">Notifications Center</h1>
+        <p style="margin:4px 0 0 0; color:var(--soft); font-size:0.9rem;">View system alerts, announcements, and direct messages.</p>
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="requestBrowserNotificationPermission()">
+        <i class="icon" data-lucide="bell-ring"></i>
+        <span>Enable Browser Desktop Notifications</span>
+      </button>
+    </div>
+
+    <!-- NOTIFICATIONS FEED CONTAINER -->
+    <div class="stat-card">
+      <div id="notificationsFeed" style="display:flex; flex-direction:column; gap:10px; width:100%;">
+        <p style="color:var(--soft); font-size:0.88rem; padding:12px 0;">Loading notifications...</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js?v=26"></script>
+
+  <!-- Standard Reusable Modal Popup -->
+  <div id="standardPopup" class="popup-overlay" style="display:none;">
+    <div class="popup-card">
+      <span class="close-btn" onclick="closeStandardPopup()">✕</span>
+      <h2 id="standardPopupTitle">Notification</h2>
+      <div id="standardPopupContent" class="popup-body"></div>
+    </div>
+  </div>
+
+</body>
+</html>

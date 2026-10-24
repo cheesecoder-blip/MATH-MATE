@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson Reading & Activity Evaluation - Math Mate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=27" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="page">
+  <input type="checkbox" id="theme" class="theme-toggle" />
+
+  <!-- Shared Sidebar Container -->
+  <div id="sidebar-container"></div>
+
+  <main class="main-content">
+    <div style="margin-bottom: 16px;">
+      <button class="btn btn-secondary btn-sm" onclick="window.location.href='courses.html'">
+        <i class="icon" data-lucide="arrow-left"></i> Back to Courses
+      </button>
+    </div>
+
+    <!-- LESSON HEADER -->
+    <div class="welcome-card" style="margin-bottom: 20px; flex-direction:column; gap:8px;">
+      <span id="lessonWeek" style="background:var(--active); color:var(--accent); padding:4px 10px; border-radius:12px; font-weight:700; font-size:0.75rem; width:fit-content;">Competency</span>
+      <h1 id="lessonTitle" style="margin:0; font-size:1.5rem; color:var(--text);">Loading Lesson...</h1>
+    </div>
+
+    <!-- TAB SWITCHER -->
+    <div style="display:flex; gap:10px; margin-bottom:20px;">
+      <button id="tabBtnReading" class="btn btn-primary" onclick="switchLessonTab('reading')" style="flex:1; padding:12px;">
+        <i class="icon" data-lucide="book-open"></i> Lesson Reading & Explanations
+      </button>
+      <button id="tabBtnQuiz" class="btn btn-secondary" onclick="switchLessonTab('quiz')" style="flex:1; padding:12px;">
+        <i class="icon" data-lucide="file-check"></i> Activity Questionnaire
+      </button>
+    </div>
+
+    <!-- TAB 1: LESSON READING -->
+    <div id="lessonReadingSection" class="stat-card" style="flex-direction:column; padding:24px; margin-bottom:24px; line-height:1.6; color:var(--text);">
+      <div id="lessonReadingContent">
+        <!-- Rendered dynamically by script.js?v=27 -->
+      </div>
+    </div>
+
+    <!-- TAB 2: ACTIVITY QUESTIONNAIRE -->
+    <div id="lessonQuizSection" class="stat-card" style="display:none; flex-direction:column; padding:24px; margin-bottom:24px;">
+      <h3 style="margin:0 0 16px 0; font-size:1.15rem; color:var(--text);">Activity Evaluation Questionnaire</h3>
+      <p style="margin:0 0 20px 0; font-size:0.88rem; color:var(--soft);">Answer each item below carefully. You earn +10 EXP per correct answer upon submission!</p>
+      
+      <form id="lessonQuizForm" onsubmit="handleStandaloneActivitySubmit(event)">
+        <!-- Questions rendered dynamically by script.js?v=27 -->
+      </form>
+    </div>
+  </main>
+
+  <script src="math7_course_data.js?v=27"></script>
+  <script src="script.js?v=27"></script>
+
+  <!-- Standard Reusable Modal Popup -->
+  <div id="standardPopup" class="popup-overlay">
+    <div class="popup-card">
+      <span class="close-btn" onclick="closeStandardPopup()">✕</span>
+      <h2 id="standardPopupTitle">Notification</h2>
+      <div id="standardPopupContent" class="popup-body"></div>
+    </div>
+  </div>
+
+</body>
+</html>

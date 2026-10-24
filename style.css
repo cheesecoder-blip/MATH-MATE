@@ -1,0 +1,435 @@
+:root {
+  --page: #0f172a;
+  --surface: #1e293b;
+  --text: #f8fafc;
+  --soft: #94a3b8;
+  --muted: #64748b;
+  --border: #334155;
+  --chip: #0f172a;
+  --accent: #3b82f6;
+  --active: rgba(59, 130, 246, 0.15);
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  --card-radius: 16px;
+}
+
+body.light-mode,
+:root:not(.dark-mode) body:not(.dark-mode) {
+  --page: #f1f5f9;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --soft: #475569;
+  --muted: #94a3b8;
+  --border: #e2e8f0;
+  --chip: #f8fafc;
+  --accent: #2563eb;
+  --active: rgba(37, 99, 235, 0.1);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode {
+  --page: #0f172a;
+  --surface: #1e293b;
+  --text: #f8fafc;
+  --soft: #94a3b8;
+  --muted: #64748b;
+  --border: #334155;
+  --chip: #0f172a;
+  --accent: #3b82f6;
+  --active: rgba(59, 130, 246, 0.15);
+  --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--page);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+/* Hidden Theme Checkbox */
+.theme-toggle {
+  display: none;
+}
+
+/* Icon lucide helpers */
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Mobile Top Bar */
+.mobile-top-bar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 16px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  box-shadow: var(--shadow);
+}
+
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.hamburger-btn:hover {
+  background: var(--chip);
+}
+
+/* Backdrop overlay for mobile drawer */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.drawer-overlay.active,
+.drawer-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Hamburger Drawer */
+.hamburger-drawer {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 260px;
+  bottom: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1002;
+  box-shadow: var(--shadow);
+  overflow-y: auto;
+}
+
+.hamburger-drawer.active,
+.hamburger-drawer.open {
+  left: 0;
+}
+
+.hamburger-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.hamburger-item:hover,
+.hamburger-item.active {
+  background: var(--active);
+  color: var(--accent);
+}
+
+/* Desktop Responsive Sidebar */
+.sidebar {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  bottom: 24px;
+  width: 250px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 100;
+  box-shadow: var(--shadow);
+  transition: width 0.25s;
+}
+
+.sidebar .profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--chip);
+  cursor: pointer;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.sidebar .nav-radio {
+  display: none;
+}
+
+.sidebar .item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--soft);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.sidebar .item:hover {
+  background: var(--chip);
+  color: var(--text);
+}
+
+.sidebar .nav-radio:checked + .item {
+  background: var(--active);
+  color: var(--accent);
+}
+
+.sidebar .actions {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Theme Action Buttons */
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--chip);
+  color: var(--soft);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.action-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Main Layout */
+.main-content {
+  margin-left: 298px;
+  padding: 32px 32px 48px 32px;
+  max-width: 1200px;
+}
+
+/* General Card Component */
+.stat-card, .welcome-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+}
+
+.welcome-card {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--chip) 100%);
+  border: 1px solid var(--border);
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.1s, opacity 0.15s, background 0.15s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: var(--chip);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--surface);
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  border-radius: 8px;
+}
+
+/* Avatar Placeholder */
+.avatar-placeholder {
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 50%;
+  text-transform: uppercase;
+  user-select: none;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Badges */
+.unread-badge {
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.unread-chat-item {
+  border-left: 4px solid var(--accent) !important;
+}
+
+/* Modal Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+.popup-overlay.active,
+.popup-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: var(--shadow);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.popup-card .close-btn {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 1.2rem;
+  color: var(--soft);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 50%;
+}
+
+.popup-card .close-btn:hover {
+  background: var(--chip);
+  color: var(--text);
+}
+
+.popup-card h2 {
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+/* Mobile Media Queries */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none !important;
+  }
+  .mobile-top-bar {
+    display: flex !important;
+  }
+  .main-content {
+    margin-left: 0 !important;
+    padding: 76px 16px 32px 16px !important;
+  }
+  .flex-between {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}

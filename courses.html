@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses & Lessons - Math Mate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=27" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="page">
+  <input type="checkbox" id="theme" class="theme-toggle" />
+
+  <!-- Shared Sidebar Container -->
+  <div id="sidebar-container"></div>
+
+  <main class="main-content">
+    <div class="welcome-card flex-between" style="margin-bottom: 20px;">
+      <div>
+        <h1 style="margin:0; font-size:1.5rem; color:var(--text);">Course Catalog & Curriculum</h1>
+        <p style="margin:4px 0 0 0; color:var(--soft); font-size:0.9rem;">Click any Term card below to drop down and view available lesson readings and evaluation questionnaires.</p>
+      </div>
+    </div>
+
+    <!-- COURSE HEADER CARD -->
+    <div style="margin-bottom:24px;">
+      <div class="stat-card" style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+          <div>
+            <span style="background:var(--active); color:var(--accent); padding:4px 10px; border-radius:12px; font-weight:700; font-size:0.75rem;">Grade 7 Mathematics</span>
+            <h3 style="margin:6px 0 2px 0; font-size:1.25rem; color:var(--text);">Mathematics 7</h3>
+            <p style="margin:0; font-size:0.88rem; color:var(--soft);">Gusa Regional Science High School • 3 Terms • 27 Competencies</p>
+          </div>
+          <span class="btn btn-secondary btn-sm" style="cursor:default; font-weight:700; color:#10b981;">
+            <i class="icon" data-lucide="check-circle"></i> Enrolled Course
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVE COURSE AREA & ACCORDION DROPDOWN TERMS CONTAINER -->
+    <div id="activeCourseArea">
+      <div id="courseTermsContainer">
+        <!-- Accordion items rendered dynamically by script.js?v=27 -->
+      </div>
+    </div>
+  </main>
+
+  <script src="math7_course_data.js?v=27"></script>
+  <script src="script.js?v=27"></script>
+
+  <!-- Standard Reusable Modal Popup -->
+  <div id="standardPopup" class="popup-overlay">
+    <div class="popup-card">
+      <span class="close-btn" onclick="closeStandardPopup()">✕</span>
+      <h2 id="standardPopupTitle">Notification</h2>
+      <div id="standardPopupContent" class="popup-body"></div>
+    </div>
+  </div>
+
+</body>
+</html>

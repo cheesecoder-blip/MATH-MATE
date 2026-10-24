@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Leaderboard - Math Mate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=27" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="page">
+  <input type="checkbox" id="theme" class="theme-toggle" />
+
+  <!-- Shared Sidebar Container -->
+  <div id="sidebar-container"></div>
+
+  <main class="main-content">
+    <div class="welcome-card flex-between" style="margin-bottom: 20px;">
+      <div>
+        <h1 style="margin:0; font-size:1.5rem; color:var(--text);">🏆 Global EXP Leaderboard</h1>
+        <p style="margin:4px 0 0 0; color:var(--soft); font-size:0.9rem;">Live student rankings updated from EXP earned in Grade 7 activity evaluations. Click any student to view profile!</p>
+      </div>
+    </div>
+
+    <!-- CHAMPIONS PODIUM SPOTLIGHT -->
+    <div id="podiumArea">
+      <!-- Top 3 Podium rendered automatically by script.js?v=27 -->
+    </div>
+
+    <!-- LEADERBOARD TABLE CARD -->
+    <div class="stat-card" style="padding:0; overflow:hidden; flex-direction:column; align-items:stretch; margin-bottom:28px;">
+      <table style="width:100%; border-collapse:collapse; text-align:left;">
+        <thead>
+          <tr style="background:var(--chip); border-bottom:1px solid var(--border); font-size:0.8rem; color:var(--soft); text-transform:uppercase;">
+            <th style="padding:14px; width:70px; text-align:center;">Rank</th>
+            <th style="padding:14px;">Student Explorer</th>
+            <th style="padding:14px; text-align:right;">Total EXP</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardTableBody">
+          <!-- Populated dynamically by script.js?v=27 -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="script.js?v=27"></script>
+
+  <!-- Standard Reusable Modal Popup -->
+  <div id="standardPopup" class="popup-overlay">
+    <div class="popup-card">
+      <span class="close-btn" onclick="closeStandardPopup()">✕</span>
+      <h2 id="standardPopupTitle">Notification</h2>
+      <div id="standardPopupContent" class="popup-body"></div>
+    </div>
+  </div>
+
+</body>
+</html>
